@@ -1,4 +1,7 @@
-from sqlmodel import SQLModel, create_engine
+from sqlmodel import SQLModel, Session
+from sqlmodel import create_engine
+from typing import Annotated
+from fastapi import Depends, FastAPI
 
 # Datos de conexión (ajusta según tu RDS)
 DB_USER = "admin1"          # tu usuario de RDS
@@ -22,3 +25,4 @@ def get_session():
 
 
 SessionDep = Annotated[Session, Depends(get_session)]
+
