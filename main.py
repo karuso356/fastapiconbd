@@ -11,8 +11,8 @@ def read_root():
 
 
 @app.get("/check-db")
-def check_db(session,SessionDep):
-    result - session.exec(select()).first()
+def check_db(session:SessionDep):
+    result = session.exec(select()).first()
     return{"db_status":result}
 
 
@@ -59,4 +59,5 @@ def create_book(book: Book):
 @app.get("/books/", response_model=List[Book])
 def list_books():
     with Session(engine) as session:
+
         return session.exec(select(Book)).all()
