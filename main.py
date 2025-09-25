@@ -12,7 +12,7 @@ def read_root():
 
 @app.get("/check-db")
 def check_db(session:SessionDep):
-    result = session.exec(select()).first()
+    result = session.exec(select(User)).first()
     return{"db_status":result}
 
 
@@ -32,7 +32,6 @@ class Book(SQLModel, table=True):
 @app.on_event("startup")
 def on_startup():
     create_db_and_tables()
-
 
 @app.post("/users/", response_model=User)
 def create_user(user: User):
